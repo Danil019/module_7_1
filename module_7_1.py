@@ -20,6 +20,10 @@ class Shop:
 
     def add(self, *products):
         existing_products = set()
+        file = open(self.__file_name, 'r')
+        for line in file:
+            existing_products.add(line.strip().split(', ')[0].lower())  # Сохраняем названия в нижнем регистре
+        file.close()
         # Запись новых продуктов
         file = open(self.__file_name, 'a')
         for product in products:
